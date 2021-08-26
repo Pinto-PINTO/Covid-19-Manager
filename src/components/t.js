@@ -68,7 +68,7 @@ for(let i=0;i<14;i++) {
     USERS[i] = {
         name: "Antiseptic wipe",
         description: "Alcohol hand sanitizer",
-        quantity: "30",
+        quantity: "30,000",
         date: "25-8-2021",
         status: STATUSES[Math.floor(Math.random() * STATUSES.length)]
     }
