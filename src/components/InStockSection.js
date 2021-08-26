@@ -53,10 +53,11 @@ export default function InStockSection() {
 
     <div className={classes.root}>
         <Grid container>
-            <Grid xs={6}>
+          
+            <Grid xs={6} >
                 <StockSearch/>
             </Grid>
-            <Grid className={classes.root} xs={6}>
+            <Grid xs={6} >
                 <ProductAddBtn/>
             </Grid>
       </Grid>
