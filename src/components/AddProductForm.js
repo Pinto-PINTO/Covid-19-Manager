@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddProductForm() {
   const classes = useStyles();
+  // const [productName, setProductName] = useState("");
 
   return (
     <div className={classes.root}>
@@ -25,7 +26,11 @@ export default function AddProductForm() {
           label="Product Name"
           style={{ marginTop: 18, paddingTop: 10 }}
           placeholder="Enter product name"
-          
+          // focus 
+          // value = {productName}
+          // onChange = {(e) => {
+          //   setProductName(e.target.value);
+          // }}
           fullWidth
           margin="normal"
           InputLabelProps={{

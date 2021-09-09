@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 // import Button from '@material-ui/core/Button';
 // import SideMenu from "./components/SideMenu";
-import NavBar from './components/NavBar';
+import NavBar from './components/Navigation/NavBar';
 // import InStockSection from './components/InStockSection';
 // import UploadButtons from './components/t';
 // import ProductTable from './components/ProductTable';
@@ -12,19 +12,21 @@ import LineSection from './components/LineSection';
 // import NavSideBar from './components/NavSideBar';
 import Chart from './components/Chart';
 import StyleSheet from './components/StyleSheet'
+import Cards from './components/Cards/Cards'
+import Forms from './components/Form/Forms'
 
 
 function App() {
 
   return (
     <div className="App">      
-      <NavBar/>
-      {/* <NavSideBar/> */}
-      
-      <LineSection/>
-      {/* <StyleSheet/> */}
+      <NavBar />
+      <Cards />
+      <Forms />
+
+      {/* <LineSection/>
       <MTable/>
-      <Chart/>
+      <Chart/> */}
     </div>
   );
 }
