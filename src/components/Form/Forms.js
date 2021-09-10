@@ -41,7 +41,7 @@ const Forms = () => {
             <Grid.Column>
 
               {/* --- Updating Form START---- */}
-              <UpdateForm />
+              {/* <UpdateForm /> */}
               {/* --- Updating Form END---- */}
 
             </Grid.Column>

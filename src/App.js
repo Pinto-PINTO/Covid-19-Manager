@@ -11,9 +11,11 @@ import LineSection from './components/LineSection';
 // import { makeStyles } from '@material-ui/styles';
 // import NavSideBar from './components/NavSideBar';
 import Chart from './components/Chart';
-import StyleSheet from './components/StyleSheet'
-import Cards from './components/Cards/Cards'
-import Forms from './components/Form/Forms'
+import StyleSheet from './components/StyleSheet';
+import Cards from './components/Cards/Cards';
+import Forms from './components/Form/Forms';
+// import Form_Table from './components/Form/Form_And_Table';
+
 
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
     <div className="App">      
       <NavBar />
       <Cards />
+      {/* <Form_Table /> */}
       <Forms />
 
       {/* <LineSection/>
