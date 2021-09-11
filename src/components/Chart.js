@@ -1,5 +1,20 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import "semantic-ui-css/semantic.min.css";
+import {
+  Container,
+  Grid,
+  Modal,
+  Image,
+  Segment,
+  Button,
+  Form,
+  Header,
+  Table,
+  Icon,
+} from "semantic-ui-react";
+import firebase from "../Firebase";
+
 
 const data = [
   {
@@ -48,27 +63,51 @@ const data = [
 
 export default function Chart() {
 
-    return (
-        <ResponsiveContainer width="40%" aspect={3}>
-          <LineChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="August" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="July" stroke="#82ca9d" />
-          </LineChart>
-        </ResponsiveContainer>
-      );
+  const [productData, setProductData] = useState([]);
+  const [pcount, setPcount] = useState("");
+
+  // Creating DB in firebase 
+  useEffect(() => {
+    const firestore = firebase.database().ref("/ProductInfo");
+    firestore.on("value", (response) => {
+      const data = response.val();
+      let productInfo = [];
+      for (let id in data) {
+        productInfo.push({
+          id: id,
+          Product_Name: data[id].Product_Name,
+          Product_Desc: data[id].Product_Desc,
+          Product_Status: data[id].Product_Status,
+          Product_Expire: data[id].Product_Expire,
+          Product_Qty: data[id].Product_Qty
+        });
+      }
+      setProductData(productInfo);
+    });
+  }, []);
+
+  return (
+    <ResponsiveContainer width="40%" aspect={3}>
+
+      <LineChart
+        width={500}
+        height={300}
+        data={data}
+        margin={{
+          top: 10,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="August" stroke="#8884d8" />
+        <Line type="monotone" dataKey="July" stroke="#82ca9d" />
+      </LineChart>
+    </ResponsiveContainer>
+  );
 }

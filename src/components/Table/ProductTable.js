@@ -108,8 +108,14 @@ const ProductTable = () => {
 
     // ---------- Configurations END ----------
 
-
     return (
+
+        // api = https://hospital-inventory-managment-default-rtdb.firebaseio.com/ProductInfo.json
+        // https://firebase.google.com/docs/reference/rest/database#section-get
+        // https://docs.thunkable.com/realtime-db
+        // https://www.youtube.com/watch?v=hzLDsxPGctY
+
+
 
         <div>
 
@@ -126,8 +132,7 @@ const ProductTable = () => {
                             <Table.HeaderCell> Status </Table.HeaderCell>
                             <Table.HeaderCell> Expiration Date </Table.HeaderCell>
                             <Table.HeaderCell> Quantity </Table.HeaderCell>
-
-                            <Table.HeaderCell></Table.HeaderCell>
+                            <Table.HeaderCell> Actions </Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     {productData.map((data, index) => {
@@ -147,14 +152,14 @@ const ProductTable = () => {
                                         onOpen={() => setOpen(true)}
                                         open={open}
                                         trigger={
-                                        <Button color="blue" onClick={() => {
-                                            handleUpdateClick(data);
-                                        }}
-                                        >
-                                            <Icon name="edit"></Icon>
-                                            U
-                                        </Button>}
-                                    >                                        
+                                            <Button color="blue" onClick={() => {
+                                                handleUpdateClick(data);
+                                            }}
+                                            >
+                                                <Icon name="edit"></Icon>
+                                                U
+                                            </Button>}
+                                    >
 
                                         <Modal.Header>Update Product Details</Modal.Header>
                                         <Modal.Content image>
@@ -270,6 +275,7 @@ const ProductTable = () => {
 }
 
 export default ProductTable;
+
 
 
 
