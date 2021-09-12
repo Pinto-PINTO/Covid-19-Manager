@@ -11,8 +11,10 @@ import {
     Header,
     Table,
     Icon,
+    Menu,
 } from "semantic-ui-react";
 import firebase from "../../Firebase";
+import '../../App.css'
 
 
 
@@ -118,7 +120,7 @@ const ProductTable = () => {
             <Segment>
 
                 {/* Creating table with content from db */}
-                <Table celled fixed singleLine>
+                <Table celled fixed singleLine className="I_product_table">
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell> Product Name </Table.HeaderCell>
@@ -126,8 +128,7 @@ const ProductTable = () => {
                             <Table.HeaderCell> Status </Table.HeaderCell>
                             <Table.HeaderCell> Expiration Date </Table.HeaderCell>
                             <Table.HeaderCell> Quantity </Table.HeaderCell>
-
-                            <Table.HeaderCell></Table.HeaderCell>
+                            <Table.HeaderCell> Actions </Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     {productData.map((data, index) => {
@@ -147,14 +148,14 @@ const ProductTable = () => {
                                         onOpen={() => setOpen(true)}
                                         open={open}
                                         trigger={
-                                        <Button color="blue" onClick={() => {
-                                            handleUpdateClick(data);
-                                        }}
-                                        >
-                                            <Icon name="edit"></Icon>
-                                            U
-                                        </Button>}
-                                    >                                        
+                                            <Button color="blue" onClick={() => {
+                                                handleUpdateClick(data);
+                                            }}
+                                            >
+                                                {/* <Icon name="edit"></Icon> */}
+                                                U
+                                            </Button>}
+                                    >
 
                                         <Modal.Header>Update Product Details</Modal.Header>
                                         <Modal.Content image>
@@ -255,7 +256,7 @@ const ProductTable = () => {
                                             handleDeleteClick(data.id);
                                         }}
                                     >
-                                        <Icon name="delete"></Icon>
+                                        {/* <Icon name="delete"></Icon> */}
                                         D
                                     </Button>
                                 </Table.Cell>

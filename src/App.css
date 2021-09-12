@@ -37,6 +37,14 @@
   }
 }
 
+
+/* ----------------------------------------------------------
+-----------------------CSS Files Edit -----------------------
+------------------------------------------------------------- */
+
+
+/* ---------- Product Details Form Edit START ---------- */
+
 .I_inset_form_title {
   color: #1769aa;
   text-align: center;
@@ -59,7 +67,7 @@
   padding-top: 15px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
@@ -88,3 +96,22 @@
   color: rgb(255, 255, 255) !important;
   background-color: #2196f3 !important;
 }
+
+
+/* ---------- Product Details Form Edit END ---------- */
+
+
+/* ---------- Product Table Edit START ---------- */
+
+.I_product_table{
+  text-align: center !important;
+}
+
+
+/* ---------- Product Table Edit END ---------- */
+
+
+
+/* ----------------------------------------------------------
+-----------------------CSS Files Edit -----------------------
+------------------------------------------------------------- */
