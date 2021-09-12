@@ -22,16 +22,15 @@ export default function FormDesign() {
           </Grid>
           <Grid item xs={12} sm={6} md={6}>
 
-            <ProductTable />
-            {/* --- Updating Form START---- */}
-            {/* <UpdateForm /> */}
+           {/* --- Updating Form START---- */}
+           <ProductTable />
             {/* --- Updating Form END---- */}
 
           </Grid>
           <Grid item xs={12} sm={6} md={12}>
 
             {/* --- Updating Form START---- */}
-            <ProductTable />
+            {/* <ProductTable /> */}
             {/* --- Updating Form END---- */}
 
           </Grid>

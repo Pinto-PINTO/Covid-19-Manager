@@ -13,6 +13,7 @@ import {
     Icon,
     Menu,
 } from "semantic-ui-react";
+import { TablePagination, TableRow, TableCell } from '@material-ui/core';
 import firebase from "../../Firebase";
 import '../../App.css'
 
@@ -106,7 +107,22 @@ const ProductTable = () => {
 
     // ---------- Table Update & Delete Button Handling END ----------
 
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = React.useState(false)  // Opening and closing model update form
+
+    // Table Pagination
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(6);
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = event => {
+        setRowsPerPage(parseInt(event.target.value, 6));
+        setPage(0);
+    };
+    const emptyRows =
+        rowsPerPage - Math.min(rowsPerPage, productData.length - page * rowsPerPage);
+
 
     // ---------- Configurations END ----------
 
@@ -131,139 +147,154 @@ const ProductTable = () => {
                             <Table.HeaderCell> Actions </Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
-                    {productData.map((data, index) => {
-                        return (
-                            <Table.Body>
-                                <Table.Cell>{data.Product_Name}</Table.Cell>
-                                <Table.Cell>{data.Product_Desc}</Table.Cell>
-                                <Table.Cell>{data.Product_Status}</Table.Cell>
-                                <Table.Cell>{data.Product_Expire}</Table.Cell>
-                                <Table.Cell>{data.Product_Qty}</Table.Cell>
-                                <Table.Cell>
+                    {productData
+                        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        .map((data, index) => {
+                            return (
+                                <Table.Body>
+                                    <Table.Cell>{data.Product_Name}</Table.Cell>
+                                    <Table.Cell>{data.Product_Desc}</Table.Cell>
+                                    <Table.Cell>{data.Product_Status}</Table.Cell>
+                                    <Table.Cell>{data.Product_Expire}</Table.Cell>
+                                    <Table.Cell>{data.Product_Qty}</Table.Cell>
+                                    <Table.Cell>
 
-                                    {/* ---------- Modal Update Form START ---------- */}
+                                        {/* ---------- Modal Update Form START ---------- */}
 
-                                    <Modal
-                                        onClose={() => setOpen(false)}
-                                        onOpen={() => setOpen(true)}
-                                        open={open}
-                                        trigger={
-                                            <Button color="blue" onClick={() => {
-                                                handleUpdateClick(data);
+                                        <Modal
+                                            onClose={() => setOpen(false)}
+                                            onOpen={() => setOpen(true)}
+                                            open={open}
+                                            trigger={
+                                                <Button color="blue" onClick={() => {
+                                                    handleUpdateClick(data);
+                                                }}
+                                                >
+                                                    {/* <Icon name="edit"></Icon> */}
+                                                    U
+                                                </Button>}
+                                        >
+
+                                            <Modal.Header>Update Product Details</Modal.Header>
+                                            <Modal.Content image>
+                                                <Modal.Description>
+
+                                                    {/* ---------- Update Form START --------- */}
+
+                                                    <Form>
+                                                        <Form.Field>
+                                                            <label>Product Name</label>
+                                                            <input
+                                                                placeholder="Enter Product Name"
+                                                                focus
+                                                                value={uProductName}
+                                                                onChange={(e) => {
+                                                                    setuProductName(e.target.value);
+                                                                }}
+                                                                type="text"
+                                                            />
+                                                        </Form.Field>
+                                                        <Form.Field>
+                                                            <label>Product Description</label>
+                                                            <input
+                                                                placeholder="Enter Description"
+                                                                focus
+                                                                value={uProductDescription}
+                                                                onChange={(e) => {
+                                                                    setuProductDescription(e.target.value);
+                                                                }}
+                                                                type="text"
+                                                            />
+                                                        </Form.Field>
+                                                        <Form.Field>
+                                                            <label>Status</label>
+                                                            <input
+                                                                placeholder="Enter Status"
+                                                                focus
+                                                                value={uProductStatus}
+                                                                onChange={(e) => {
+                                                                    setuProductStatus(e.target.value);
+                                                                }}
+                                                                type="text"
+                                                            />
+                                                        </Form.Field>
+                                                        <Form.Field>
+                                                            <label>Expiration Date</label>
+                                                            <input
+                                                                placeholder="Enter the Expiration Date"
+                                                                focus
+                                                                value={uProductExpiration}
+                                                                onChange={(e) => {
+                                                                    setuProductExpiration(e.target.value);
+                                                                }}
+                                                                type="date"
+                                                            />
+                                                        </Form.Field>
+                                                        <Form.Field>
+                                                            <label>Quantity</label>
+                                                            <input
+                                                                placeholder="Enter the Quantity"
+                                                                focus
+                                                                value={uProductQuantity}
+                                                                onChange={(e) => {
+                                                                    setuProductQuantity(e.target.value);
+                                                                }}
+                                                                type="number"
+                                                            />
+                                                        </Form.Field>
+
+
+                                                        <Button
+                                                            type="submit"
+                                                            onClick={() => {
+                                                                handleUpdateProduct();
+                                                                setOpen(false);
+                                                            }}
+                                                            primary
+                                                        >
+                                                            {""}
+                                                            <Icon name="cog"></Icon>
+                                                            Update
+                                                        </Button>
+                                                    </Form>
+
+                                                    {/* ---------- Update Form END ----------- */}
+
+
+
+                                                </Modal.Description>
+                                            </Modal.Content>
+                                        </Modal>
+
+                                        {/* ---------- Modal Update Form END ---------- */}
+
+                                        <Button
+                                            color="red"
+                                            onClick={() => {
+                                                handleDeleteClick(data.id);
                                             }}
-                                            >
-                                                {/* <Icon name="edit"></Icon> */}
-                                                U
-                                            </Button>}
-                                    >
-
-                                        <Modal.Header>Update Product Details</Modal.Header>
-                                        <Modal.Content image>
-                                            <Modal.Description>
-
-                                                {/* ---------- Update Form START --------- */}
-
-                                                <Form>
-                                                    <Form.Field>
-                                                        <label>Product Name</label>
-                                                        <input
-                                                            placeholder="Enter Product Name"
-                                                            focus
-                                                            value={uProductName}
-                                                            onChange={(e) => {
-                                                                setuProductName(e.target.value);
-                                                            }}
-                                                            type="text"
-                                                        />
-                                                    </Form.Field>
-                                                    <Form.Field>
-                                                        <label>Product Description</label>
-                                                        <input
-                                                            placeholder="Enter Description"
-                                                            focus
-                                                            value={uProductDescription}
-                                                            onChange={(e) => {
-                                                                setuProductDescription(e.target.value);
-                                                            }}
-                                                            type="text"
-                                                        />
-                                                    </Form.Field>
-                                                    <Form.Field>
-                                                        <label>Status</label>
-                                                        <input
-                                                            placeholder="Enter Status"
-                                                            focus
-                                                            value={uProductStatus}
-                                                            onChange={(e) => {
-                                                                setuProductStatus(e.target.value);
-                                                            }}
-                                                            type="text"
-                                                        />
-                                                    </Form.Field>
-                                                    <Form.Field>
-                                                        <label>Expiration Date</label>
-                                                        <input
-                                                            placeholder="Enter the Expiration Date"
-                                                            focus
-                                                            value={uProductExpiration}
-                                                            onChange={(e) => {
-                                                                setuProductExpiration(e.target.value);
-                                                            }}
-                                                            type="date"
-                                                        />
-                                                    </Form.Field>
-                                                    <Form.Field>
-                                                        <label>Quantity</label>
-                                                        <input
-                                                            placeholder="Enter the Quantity"
-                                                            focus
-                                                            value={uProductQuantity}
-                                                            onChange={(e) => {
-                                                                setuProductQuantity(e.target.value);
-                                                            }}
-                                                            type="number"
-                                                        />
-                                                    </Form.Field>
-
-
-                                                    <Button
-                                                        type="submit"
-                                                        onClick={() => {
-                                                            handleUpdateProduct();
-                                                            setOpen(false);
-                                                        }}
-                                                        primary
-                                                    >
-                                                        {""}
-                                                        <Icon name="cog"></Icon>
-                                                        Update
-                                                    </Button>
-                                                </Form>
-
-                                                {/* ---------- Update Form END ----------- */}
-
-
-
-                                            </Modal.Description>
-                                        </Modal.Content>
-                                    </Modal>
-
-                                    {/* ---------- Modal Update Form END ---------- */}
-
-                                    <Button
-                                        color="red"
-                                        onClick={() => {
-                                            handleDeleteClick(data.id);
-                                        }}
-                                    >
-                                        {/* <Icon name="delete"></Icon> */}
-                                        D
-                                    </Button>
-                                </Table.Cell>
-                            </Table.Body>
-                        );
-                    })}
+                                        >
+                                            {/* <Icon name="delete"></Icon> */}
+                                            D
+                                        </Button>
+                                    </Table.Cell>
+                                </Table.Body>
+                            );
+                        })}
+                    {emptyRows > 0 && (
+                        <TableRow style={{ height: 53 * emptyRows }}>
+                            <TableCell colSpan={6} />
+                        </TableRow>
+                    )}
                 </Table>
+                <TablePagination
+                    component="div"
+                    count={productData.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    onChangeRowsPerPage={handleChangeRowsPerPage}
+                />
                 {/* ----- Table END ----- */}
             </Segment>
 
