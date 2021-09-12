@@ -36,3 +36,55 @@
     transform: rotate(360deg);
   }
 }
+
+.I_inset_form_title {
+  color: #1769aa;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.I_inset_form {
+  /* background-color: cornflowerblue; */
+  border-radius: 10px;
+  /* border: 1px solid #1769aa; */
+  /* padding-left: 0px !important; */
+}
+.I_in_inset_form {
+  /* background-color: rgb(149, 156, 170); */
+  border-radius: 10px;
+
+  text-align: left;
+  font-size: 18px !important;
+  /* border: 2px solid #1769aa; */
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px; */
+}
+
+.I_in_inset_form_label {
+  padding-bottom: 6px;
+  color: #2196f3 !important;
+}
+
+.I_in_inset_form_label::placeholder {
+  color: #2196f3 !important;
+}
+
+.I_in_inset_form_add_btn {
+  width: 100%;
+  font-size: 18px !important;
+  color: rgb(255, 255, 255) !important;
+  background-color: #1769aa !important;
+}
+
+.I_in_inset_form_add_btn:hover {
+  width: 100%;
+  font-size: 18px !important;
+  color: rgb(255, 255, 255) !important;
+  background-color: #2196f3 !important;
+}

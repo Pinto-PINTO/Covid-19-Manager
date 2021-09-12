@@ -7,8 +7,7 @@ import {
     Icon
 } from "semantic-ui-react";
 import firebase from "../../Firebase";
-
-// import '../App.css'
+import "../../App.css";
 
 
 
@@ -16,7 +15,7 @@ const InsertForm = () => {
 
 
 
-// ---------- Configurations START ----------
+    // ---------- Configurations START ----------
 
     // Intilizing variables
     const [productName, setProductName] = useState("");
@@ -76,90 +75,104 @@ const InsertForm = () => {
         setProductQuantity("");
     };
 
+
     // ---------- Configurations END ----------
 
 
 
 
     return (
-        <div>
-            
-            {/* ------------ Inserting Form START ------------ */}
 
-            <Segment padded="very">
-                <Form>
-                    <Form.Field>
-                        <label>Product Name</label>
-                        <input
-                            placeholder="Enter Product Name"
-                            focus
-                            value={productName}
-                            onChange={(e) => {
-                                setProductName(e.target.value);
-                            }}
-                        />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Product Description</label>
-                        <input
-                            placeholder="Enter Description"
-                            focus
-                            value={productDescription}
-                            onChange={(e) => {
-                                setProductDescription(e.target.value);
-                            }}
-                        />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Status</label>
-                        <input
-                            placeholder="Enter Status"
-                            focus
-                            value={productStatus}
-                            onChange={(e) => {
-                                setProductStatus(e.target.value);
-                            }}
-                        />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Expiration Date</label>
-                        <input
-                            placeholder="Enter the Expiration Date"
-                            focus
-                            value={productExpiration}
-                            onChange={(e) => {
-                                setProductExpiration(e.target.value);
-                            }}
-                        />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Quantity</label>
-                        <input
-                            placeholder="Enter the Quantity"
-                            focus
-                            value={productQuantity}
-                            onChange={(e) => {
-                                setProductQuantity(e.target.value);
-                            }}
-                        />
-                    </Form.Field>
-                    <Button
-                        type="submit"
-                        onClick={() => {
-                            handleAddProduct();
-                        }}
-                        className="ui button add_btn"
-                    >
-                        {""}
-                        <Icon name="user plus"></Icon>
-                        Add
-                    </Button>
-                </Form>
-            </Segment>
 
-            {/* ------------ Inserting Form END ------------ */}
 
-        </div>
+
+        <Form className="I_in_inset_form">
+            <h1 className="I_inset_form_title">Product Details Form</h1>
+            <Form.Field>
+                <label className="I_in_inset_form_label"></label>
+                <input
+                    placeholder="Enter Product Name"
+                    focus
+                    value={productName}
+                    onChange={(e) => {
+                        setProductName(e.target.value);
+                    }}
+                    type="text"
+                    className="I_in_inset_form_label"
+                />
+            </Form.Field>
+            <Form.Field>
+                <label className="I_in_inset_form_label"></label>
+                <input
+                    placeholder="Enter Product Description"
+                    focus
+                    value={productDescription}
+                    onChange={(e) => {
+                        setProductDescription(e.target.value);
+                    }}
+                    type="text"
+                    className="I_in_inset_form_label"
+                />
+            </Form.Field>
+            <Form.Field>
+                <label className="I_in_inset_form_label"></label>
+                <input
+                    placeholder="Enter Product Status"
+                    focus
+                    value={productStatus}
+                    onChange={(e) => {
+                        setProductStatus(e.target.value);
+                    }}
+                    type="text"
+                    className="I_in_inset_form_label"
+                />
+            </Form.Field>
+            <Form.Field>
+                <label className="I_in_inset_form_label"></label>
+                <input
+                    placeholder="Enter the Expiration Date"
+                    focus
+                    value={productExpiration}
+                    onChange={(e) => {
+                        setProductExpiration(e.target.value);
+                    }}
+                    className="I_in_inset_form_label"
+                    type="text"
+                    onFocus={(e) => (e.currentTarget.type = "date")}
+                    onBlur={(e) => (e.currentTarget.type = "text")}
+
+                />
+            </Form.Field>
+            <Form.Field>
+                <label className="I_in_inset_form_label"></label>
+                <input
+                    placeholder="Enter the Quantity"
+                    focus
+                    value={productQuantity}
+                    onChange={(e) => {
+                        setProductQuantity(e.target.value);
+                    }}
+                    type="number"
+                    className="I_in_inset_form_label"
+                />
+            </Form.Field>
+            <Button
+                type="submit"
+                onClick={() => {
+                    handleAddProduct();
+                }}
+                className="ui button I_in_inset_form_add_btn"
+            >
+                {""}
+                {/* <Icon name="user plus"></Icon> */}
+                Add
+            </Button>
+        </Form>
+
+
+
+
+
 
     )
 }

@@ -115,7 +115,7 @@ const ProductTable = () => {
 
             {/* --- Product Table START---- */}
 
-            <Segment padded="very">
+            <Segment>
 
                 {/* Creating table with content from db */}
                 <Table celled fixed singleLine>
@@ -172,6 +172,7 @@ const ProductTable = () => {
                                                             onChange={(e) => {
                                                                 setuProductName(e.target.value);
                                                             }}
+                                                            type="text"
                                                         />
                                                     </Form.Field>
                                                     <Form.Field>
@@ -183,6 +184,7 @@ const ProductTable = () => {
                                                             onChange={(e) => {
                                                                 setuProductDescription(e.target.value);
                                                             }}
+                                                            type="text"
                                                         />
                                                     </Form.Field>
                                                     <Form.Field>
@@ -194,6 +196,7 @@ const ProductTable = () => {
                                                             onChange={(e) => {
                                                                 setuProductStatus(e.target.value);
                                                             }}
+                                                            type="text"
                                                         />
                                                     </Form.Field>
                                                     <Form.Field>
@@ -205,6 +208,7 @@ const ProductTable = () => {
                                                             onChange={(e) => {
                                                                 setuProductExpiration(e.target.value);
                                                             }}
+                                                            type="date"
                                                         />
                                                     </Form.Field>
                                                     <Form.Field>
@@ -216,6 +220,7 @@ const ProductTable = () => {
                                                             onChange={(e) => {
                                                                 setuProductQuantity(e.target.value);
                                                             }}
+                                                            type="number"
                                                         />
                                                     </Form.Field>
 

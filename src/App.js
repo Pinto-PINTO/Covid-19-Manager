@@ -13,7 +13,8 @@ import LineSection from './components/LineSection';
 import Chart from './components/Chart';
 import StyleSheet from './components/StyleSheet';
 import Cards from './components/Cards/Cards';
-import Forms from './components/Form/Forms';
+// import Forms from './components/Form/Forms';
+import FormDesign from './components/Form/FormDesign';
 // import Form_Table from './components/Form/Form_And_Table';
 
 
@@ -24,8 +25,9 @@ function App() {
     <div className="App">      
       <NavBar />
       <Cards />
+      <FormDesign />
       {/* <Form_Table /> */}
-      <Forms />
+      {/* <Forms /> */}
 
       {/* <LineSection/>
       <MTable/>
