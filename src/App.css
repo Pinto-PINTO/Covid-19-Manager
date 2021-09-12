@@ -141,11 +141,27 @@
 
 /* ---------- Product Table Edit END ---------- */
 
-/* ---------- Card Edit START ---------- */
+/* ---------- Update Form Edit START ---------- */
+
+.I_update_form_title{
+  color: #1769aa;
+  text-align: center;
+  padding-bottom: 20px !important;
+}
+
+.I_update_modal_content{
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+
+.I_in_update_form_label{
+  color: #1a237e !important;
+}
 
 
-
-/* ---------- Card Edit START ---------- */
+/* ---------- Update Form Edit START ---------- */
 
 
 /* ----------------------------------------------------------

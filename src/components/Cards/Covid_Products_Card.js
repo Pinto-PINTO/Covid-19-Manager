@@ -41,7 +41,7 @@ export default function CovidProducts() {
   return (
     <RootStyle className="borderRadius">
       <IconWrapperStyle>
-        <Icon icon={syringeVaccine} width={24} height={24} />
+        <Icon icon={syringeVaccine} width={30} height={30} />
       </IconWrapperStyle>
       <Typography className="number" variant="h3">540</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>

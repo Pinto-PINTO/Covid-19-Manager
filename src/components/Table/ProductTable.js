@@ -15,6 +15,9 @@ import {
 } from "semantic-ui-react";
 import { TablePagination, TableRow, TableCell } from '@material-ui/core';
 import firebase from "../../Firebase";
+// import { Icon } from '@iconify/react';
+// import editSolid from '@iconify/icons-clarity/edit-solid';
+// import deleteFilled from '@iconify/icons-ant-design/delete-filled';
 import '../../App.css'
 
 
@@ -175,20 +178,19 @@ const ProductTable = () => {
                                                     handleUpdateClick(data);
                                                 }}
                                                 >
-                                                    {/* <Icon name="edit"></Icon> */}
                                                     U
                                                 </Button>}
                                         >
 
-                                            <Modal.Header>Update Product Details</Modal.Header>
-                                            <Modal.Content image>
+                                            <Modal.Content image className="I_update_modal_content">
                                                 <Modal.Description>
 
                                                     {/* ---------- Update Form START --------- */}
 
-                                                    <Form>
+                                                    <Form className="I_in_inset_form">
+                                                        <h1 className="I_update_form_title">Update Product Form</h1>
                                                         <Form.Field>
-                                                            <label>Product Name</label>
+                                                            <label className="I_in_update_form_label">Edit Product Name</label>
                                                             <input
                                                                 placeholder="Enter Product Name"
                                                                 focus
@@ -197,10 +199,11 @@ const ProductTable = () => {
                                                                     setuProductName(e.target.value);
                                                                 }}
                                                                 type="text"
+                                                                className="I_in_inset_form_label"
                                                             />
                                                         </Form.Field>
                                                         <Form.Field>
-                                                            <label>Product Description</label>
+                                                            <label className="I_in_update_form_label">Edit Product Description</label>
                                                             <input
                                                                 placeholder="Enter Description"
                                                                 focus
@@ -209,10 +212,11 @@ const ProductTable = () => {
                                                                     setuProductDescription(e.target.value);
                                                                 }}
                                                                 type="text"
+                                                                className="I_in_inset_form_label"
                                                             />
                                                         </Form.Field>
                                                         <Form.Field>
-                                                            <label>Status</label>
+                                                            <label className="I_in_update_form_label" >Edit Product Status</label>
                                                             <input
                                                                 placeholder="Enter Status"
                                                                 focus
@@ -221,10 +225,11 @@ const ProductTable = () => {
                                                                     setuProductStatus(e.target.value);
                                                                 }}
                                                                 type="text"
+                                                                className="I_in_inset_form_label"
                                                             />
                                                         </Form.Field>
                                                         <Form.Field>
-                                                            <label>Expiration Date</label>
+                                                            <label className="I_in_update_form_label" >Edit Expiration Date</label>
                                                             <input
                                                                 placeholder="Enter the Expiration Date"
                                                                 focus
@@ -233,10 +238,11 @@ const ProductTable = () => {
                                                                     setuProductExpiration(e.target.value);
                                                                 }}
                                                                 type="date"
+                                                                className="I_in_inset_form_label"
                                                             />
                                                         </Form.Field>
                                                         <Form.Field>
-                                                            <label>Quantity</label>
+                                                            <label className="I_in_update_form_label" >Edit Product Quantity</label>
                                                             <input
                                                                 placeholder="Enter the Quantity"
                                                                 focus
@@ -245,6 +251,7 @@ const ProductTable = () => {
                                                                     setuProductQuantity(e.target.value);
                                                                 }}
                                                                 type="number"
+                                                                className="I_in_inset_form_label"
                                                             />
                                                         </Form.Field>
 
@@ -256,9 +263,10 @@ const ProductTable = () => {
                                                                 setOpen(false);
                                                             }}
                                                             primary
+                                                            className="ui button I_in_inset_form_add_btn"
                                                         >
                                                             {""}
-                                                            <Icon name="cog"></Icon>
+                                                            {/* <Icon name="cog"></Icon> */}
                                                             Update
                                                         </Button>
                                                     </Form>

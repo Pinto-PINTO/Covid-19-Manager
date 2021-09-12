@@ -41,7 +41,7 @@ export default function LowStock() {
   return (
     <RootStyle className="borderRadius">
       <IconWrapperStyle>
-        <Icon icon={lowLevel} width={24} height={24} />
+        <Icon icon={lowLevel} width={30} height={30} />
       </IconWrapperStyle>
       <Typography className="number" variant="h3">25</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
