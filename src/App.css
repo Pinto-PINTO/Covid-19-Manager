@@ -103,13 +103,49 @@
 
 /* ---------- Product Table Edit START ---------- */
 
-.I_product_table{
-  text-align: center !important;
+.I_product_table_segment{
+  border: none !important;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: 0px !important;
+  border-radius: 10px !important;
+
 }
 
+.I_product_table{
+  text-align: center !important;
+  /* border: 1px solid #1769aa !important; */
+  border: none !important;
+  /* margin-top: 10px; */
+}
+
+.I_product_table_header_cell{
+  color: #ffffff !important;
+  background-color: #1769aa !important;
+  font-size: 17px;
+  font-weight: 600 !important;
+}
+
+.I_product_table_body_row{
+  color: #1769aa;
+  font-size: 15px;
+}
+
+.I_product_table_pagination{
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  color: #1769aa !important;
+}
 
 /* ---------- Product Table Edit END ---------- */
 
+/* ---------- Card Edit START ---------- */
+
+
+
+/* ---------- Card Edit START ---------- */
 
 
 /* ----------------------------------------------------------

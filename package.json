@@ -46,6 +46,8 @@
   },
   "devDependencies": {
     "@iconify/icons-ant-design": "^1.1.0",
+    "@iconify/icons-entypo": "^1.1.0",
+    "@iconify/icons-healthicons": "^1.1.4",
     "@iconify/react": "^3.0.1"
   }
 }

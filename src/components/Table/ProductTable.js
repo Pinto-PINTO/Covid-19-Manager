@@ -109,7 +109,9 @@ const ProductTable = () => {
 
     const [open, setOpen] = React.useState(false)  // Opening and closing model update form
 
-    // Table Pagination
+
+    // ---------- Table Pagination START ----------
+
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(6);
     const handleChangePage = (event, newPage) => {
@@ -120,8 +122,10 @@ const ProductTable = () => {
         setRowsPerPage(parseInt(event.target.value, 6));
         setPage(0);
     };
-    const emptyRows =
-        rowsPerPage - Math.min(rowsPerPage, productData.length - page * rowsPerPage);
+
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, productData.length - page * rowsPerPage);
+
+    // ---------- Table Pagination END ----------
 
 
     // ---------- Configurations END ----------
@@ -133,18 +137,18 @@ const ProductTable = () => {
 
             {/* --- Product Table START---- */}
 
-            <Segment>
+            <Segment className="I_product_table_segment">
 
                 {/* Creating table with content from db */}
-                <Table celled fixed singleLine className="I_product_table">
+                <Table fixed singleLine className="I_product_table">
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell> Product Name </Table.HeaderCell>
-                            <Table.HeaderCell> Description </Table.HeaderCell>
-                            <Table.HeaderCell> Status </Table.HeaderCell>
-                            <Table.HeaderCell> Expiration Date </Table.HeaderCell>
-                            <Table.HeaderCell> Quantity </Table.HeaderCell>
-                            <Table.HeaderCell> Actions </Table.HeaderCell>
+                            <Table.HeaderCell className="I_product_table_header_cell" > Product Name </Table.HeaderCell>
+                            <Table.HeaderCell className="I_product_table_header_cell" > Description </Table.HeaderCell>
+                            <Table.HeaderCell className="I_product_table_header_cell" > Status </Table.HeaderCell>
+                            <Table.HeaderCell className="I_product_table_header_cell" > Expiration Date </Table.HeaderCell>
+                            <Table.HeaderCell className="I_product_table_header_cell" > Quantity </Table.HeaderCell>
+                            <Table.HeaderCell className="I_product_table_header_cell" > Actions </Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     {productData
@@ -152,6 +156,7 @@ const ProductTable = () => {
                         .map((data, index) => {
                             return (
                                 <Table.Body>
+                                    <Table.Row className="I_product_table_body_row">
                                     <Table.Cell>{data.Product_Name}</Table.Cell>
                                     <Table.Cell>{data.Product_Desc}</Table.Cell>
                                     <Table.Cell>{data.Product_Status}</Table.Cell>
@@ -278,6 +283,7 @@ const ProductTable = () => {
                                             D
                                         </Button>
                                     </Table.Cell>
+                                    </Table.Row>
                                 </Table.Body>
                             );
                         })}
@@ -288,6 +294,7 @@ const ProductTable = () => {
                     )}
                 </Table>
                 <TablePagination
+                    className="I_product_table_pagination"
                     component="div"
                     count={productData.length}
                     rowsPerPage={rowsPerPage}

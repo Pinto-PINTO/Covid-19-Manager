@@ -5,6 +5,8 @@ import TotalQuantity from './Total_Quantity_Card'
 import CovidProducts from './Covid_Products_Card'
 import LowStock from './Low_Stock_Card'
 
+import '../../App.css'
+
 
 // ----------------------------------------------------------------------
 

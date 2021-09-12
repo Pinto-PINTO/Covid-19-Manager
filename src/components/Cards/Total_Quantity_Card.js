@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import androidFilled from '@iconify/icons-ant-design/android-filled';
+import shoppingCart from '@iconify/icons-entypo/shopping-cart';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';
 
@@ -13,7 +13,7 @@ const RootStyle = styled(Card)(({ theme }) => ({
   textAlign: 'center',
   padding: theme.spacing(5, 0),
   color: '#FFFFFF',
-  backgroundColor: '#3B185F'
+  backgroundColor: '#5c6bc0'
 }));
 
 const IconWrapperStyle = styled('div')(({ theme }) => ({
@@ -40,7 +40,7 @@ export default function TotalQuantity() {
   return (
     <RootStyle className="borderRadius">
       <IconWrapperStyle>
-        <Icon icon={androidFilled} width={24} height={24} />
+        <Icon icon={shoppingCart} width={24} height={24} />
       </IconWrapperStyle>
       <Typography className="number" variant="h3">3250</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
