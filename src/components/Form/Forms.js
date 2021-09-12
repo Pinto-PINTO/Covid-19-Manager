@@ -16,6 +16,7 @@ import "semantic-ui-css/semantic.min.css";
 import InsertForm from './Product_Insert_Form';
 import UpdateForm from './Product_Update_Form';
 import ProductTable from '../Table/ProductTable';
+import Chart from '../Charts/Charts'
 // import './Forms.css'
 // import '../App.css'
 
@@ -46,7 +47,7 @@ const Forms = () => {
 
             </Grid.Column>
           </Grid.Row>
-
+        
           <Grid.Row columns="1">
             <Grid.Column>
               
@@ -56,7 +57,7 @@ const Forms = () => {
 
             </Grid.Column>
           </Grid.Row>
-          
+ 
         </Grid>
       </Container>
     </div>

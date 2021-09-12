@@ -7,16 +7,18 @@ import {
     Icon
 } from "semantic-ui-react";
 import firebase from "../../Firebase";
-
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from "yup";
 // import '../App.css'
 
 
 
+
+
 const InsertForm = () => {
-
-
-
-// ---------- Configurations START ----------
+    
+    // ---------- Configurations START ----------
 
     // Intilizing variables
     const [productName, setProductName] = useState("");
@@ -83,7 +85,7 @@ const InsertForm = () => {
 
     return (
         <div>
-            
+
             {/* ------------ Inserting Form START ------------ */}
 
             <Segment padded="very">
@@ -91,56 +93,71 @@ const InsertForm = () => {
                     <Form.Field>
                         <label>Product Name</label>
                         <input
+                            name="pName"
                             placeholder="Enter Product Name"
                             focus
                             value={productName}
                             onChange={(e) => {
                                 setProductName(e.target.value);
                             }}
+                            type="text"
+                            
                         />
                     </Form.Field>
                     <Form.Field>
                         <label>Product Description</label>
                         <input
+                            name="pDescription"
                             placeholder="Enter Description"
                             focus
                             value={productDescription}
                             onChange={(e) => {
                                 setProductDescription(e.target.value);
                             }}
+                            type="text"
+                            
                         />
                     </Form.Field>
                     <Form.Field>
                         <label>Status</label>
                         <input
+                            name="pStatus"
                             placeholder="Enter Status"
                             focus
                             value={productStatus}
                             onChange={(e) => {
                                 setProductStatus(e.target.value);
                             }}
+                            type="text"
+                            
                         />
                     </Form.Field>
                     <Form.Field>
                         <label>Expiration Date</label>
                         <input
+                            name="pExpiry"
                             placeholder="Enter the Expiration Date"
                             focus
                             value={productExpiration}
                             onChange={(e) => {
                                 setProductExpiration(e.target.value);
                             }}
+                            type="date"
+                            
                         />
                     </Form.Field>
                     <Form.Field>
                         <label>Quantity</label>
                         <input
+                            name="pQty"
                             placeholder="Enter the Quantity"
                             focus
                             value={productQuantity}
                             onChange={(e) => {
                                 setProductQuantity(e.target.value);
                             }}
+                            type="number"
+                            
                         />
                     </Form.Field>
                     <Button

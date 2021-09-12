@@ -15,6 +15,10 @@ import StyleSheet from './components/StyleSheet';
 import Cards from './components/Cards/Cards';
 import Forms from './components/Form/Forms';
 import Data_T from './components/Data/Data';
+import CarouselSlider from './components/Carousel/CarouselSlider';
+import Contain from './components/Carousel/Container';
+
+
 // import Form_Table from './components/Form/Form_And_Table';
 
 
@@ -24,11 +28,14 @@ function App() {
   return (
     <div className="App">      
       <NavBar />
+      {/* <Contain /> */}
       <Cards />
+      <CarouselSlider />
       {/* <Form_Table /> */}
       
       {/* <Data_T /> */}
       <Forms />
+      
 
       {/* <LineSection/>
       <MTable/> */}
