@@ -15,6 +15,8 @@ import StyleSheet from './components/StyleSheet';
 import Cards from './components/Cards/Cards';
 // import Forms from './components/Form/Forms';
 import FormDesign from './components/Form/FormDesign';
+// import InformationModal from './components/Information/InformationModal';
+import InformationContainer from './components/Information/InformationContainer';
 // import Form_Table from './components/Form/Form_And_Table';
 
 
@@ -24,6 +26,7 @@ function App() {
   return (
     <div className="App">      
       <NavBar />
+      <InformationContainer />
       <Cards />
       <FormDesign />
       {/* <Form_Table /> */}
