@@ -19,7 +19,7 @@ const InsertForm = () => {
 
     // ---------- Configurations START ----------
 
-    // Intilizing variables
+    // Intilizing states
     const [productName, setProductName] = useState("");
     const [productDescription, setProductDescription] = useState("");
     const [productStatus, setProductStatus] = useState("");
@@ -62,7 +62,7 @@ const InsertForm = () => {
             // data obj passes values from the input fields of the form to the db fields
             Product_Name: productName,
             Product_Desc: productDescription,
-            Product_Status: productStatus,
+            Product_Status: productStatus.toUpperCase(),
             Product_Expire: productExpiration,
             Product_Qty: productQuantity
         };
@@ -76,7 +76,133 @@ const InsertForm = () => {
         setProductExpiration("");
         setProductQuantity("");
     };
-    
+
+
+
+    // ------------ Form Validation START ------------
+
+    const [productNameError, setProductNameError] = useState({});
+    const [productDescriptionError, setProductDescriptionError] = useState({});
+    const [productStatusError, setProductStatusError] = useState({});
+    const [productExpirationError, setProductExpirationError] = useState({});
+    const [productQuantityError, setProductQuantityError] = useState({});
+
+
+    const handleFormInput = () => {
+
+        // Return boolean to check if there is any errors within the form
+        const isValid = handleFormValidations();
+
+        if (isValid) {
+            handleAddProduct();
+        }
+    }
+
+    const handleFormValidations = () => {
+
+        // Initializing empty objects
+        const productNameError = {};
+        const productDescriptionError = {};
+        const productStatusError = {};
+        const productExpirationError = {};
+        const productQuantityError = {};
+
+        let isValid = true;  // by default 
+
+        // Validations
+
+        // 1) Product Name Validations 
+        if (productName.trim().length == 0) {
+            productNameError.productNameNone = "The product name field cannot be empty";
+            isValid = false;
+        }
+
+        if (productName.trim().length < 3 && productName.trim().length > 0) {
+            productNameError.productNameShort = "The product name is too short";
+            isValid = false;
+        }
+
+        if (productName.trim().length > 15) {
+            productNameError.productNameLong = "The product name is too long";
+            isValid = false;
+        }
+
+        // 2) Product Decription Validations 
+        if (productDescription.trim().length == 0) {
+            productDescriptionError.productDescNone = "The product description field cannot be empty";
+            isValid = false;
+        }
+
+        if (productDescription.trim().length > 30) {
+            productDescriptionError.productDescLong = "The product description is too long";
+            isValid = false;
+        }
+
+
+        // 3) Product Status Validations 
+        if (productStatus.trim().length == 0) {
+            productStatusError.productStatusNone = "The product status field cannot be empty";
+            isValid = false;
+        }
+
+        if (!productStatus.trim().length == 0) {
+            let status_words = ['ORDERED', 'INSTOCK', 'UNAVAILABLE']
+
+            if (!status_words.some(word => productStatus.toUpperCase().startsWith(word))) {
+                productStatusError.productStatusNames = "Hint: Product Status should be either Ordered, InStock or UnAvailable";
+                isValid = false;
+            }
+        }
+
+
+
+        // 4) Product Expiration Date Validations
+        if (productExpiration.trim().length == 0) {
+            productExpirationError.productExpirationNone = "An Expiration Date must be specified";
+            isValid = false;
+        }
+
+        // 5) Product Quantity Validations
+        if (productQuantity.trim().length == 0) {
+            productQuantityError.productQuantityNone = "The product quantity field cannot be empty";
+            isValid = false;
+        }
+
+        if (!productQuantity.trim().length == 0) {
+
+            // Syntax -> Number.isInteger(value)
+            if (!Number.isInteger(Number(productQuantity.trim()))) {
+                productQuantityError.productQuantityNone = "The product quantity should be an integer value";
+                isValid = false;
+            }
+
+            if (Number(productQuantity.trim()) == 0 || Number(productQuantity.trim()) < 0) {
+                productQuantityError.productQuantityZeroOrNegative = "Hint: Quanity should be greater than zero";
+                isValid = false;
+            }
+
+            if (Number(productQuantity.trim()) > 1000) {
+                productQuantityError.productQuantityZeroOrNegative = "The quantity is too large";
+                isValid = false;
+            }
+
+        }
+
+
+
+
+        setProductNameError(productNameError);
+        setProductDescriptionError(productDescriptionError);
+        setProductStatusError(productStatusError);
+        setProductExpirationError(productExpirationError);
+        setProductQuantityError(productQuantityError);
+        return isValid;
+
+    }
+
+
+    // ------------ Form Validation END ------------
+
 
     // ---------- Configurations END ----------
 
@@ -86,10 +212,8 @@ const InsertForm = () => {
     return (
 
 
-
-
         <Form className="I_in_inset_form">
-             
+            <div className="I_inset_form_title">Product Details</div>
             <Form.Field>
                 <label className="I_in_inset_form_label"></label>
                 <input
@@ -102,6 +226,9 @@ const InsertForm = () => {
                     type="text"
                     className="I_in_inset_form_label"
                 />
+                {Object.keys(productNameError).map((key) => {
+                    return <div style={{ color: "red", paddingTop: "10px" }}>{productNameError[key]}</div>
+                })}
             </Form.Field>
             <Form.Field>
                 <label className="I_in_inset_form_label"></label>
@@ -115,6 +242,9 @@ const InsertForm = () => {
                     type="text"
                     className="I_in_inset_form_label"
                 />
+                {Object.keys(productDescriptionError).map((key) => {
+                    return <div style={{ color: "red", paddingTop: "10px" }}>{productDescriptionError[key]}</div>
+                })}
             </Form.Field>
             <Form.Field>
                 <label className="I_in_inset_form_label"></label>
@@ -128,6 +258,9 @@ const InsertForm = () => {
                     type="text"
                     className="I_in_inset_form_label"
                 />
+                {Object.keys(productStatusError).map((key) => {
+                    return <div style={{ color: "red", paddingTop: "10px" }}>{productStatusError[key]}</div>
+                })}
             </Form.Field>
             <Form.Field>
                 <label className="I_in_inset_form_label"></label>
@@ -144,6 +277,9 @@ const InsertForm = () => {
                     onBlur={(e) => (e.currentTarget.type = "text")}
 
                 />
+                {Object.keys(productExpirationError).map((key) => {
+                    return <div style={{ color: "red", paddingTop: "10px" }}>{productExpirationError[key]}</div>
+                })}
             </Form.Field>
             <Form.Field>
                 <label className="I_in_inset_form_label"></label>
@@ -157,11 +293,14 @@ const InsertForm = () => {
                     type="number"
                     className="I_in_inset_form_label"
                 />
+                {Object.keys(productQuantityError).map((key) => {
+                    return <div style={{ color: "red", paddingTop: "10px" }}>{productQuantityError[key]}</div>
+                })}
             </Form.Field>
             <Button
                 type="submit"
                 onClick={() => {
-                    handleAddProduct();
+                    handleFormInput();
                 }}
                 className="ui button I_in_inset_form_add_btn"
             >

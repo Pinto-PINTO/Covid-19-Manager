@@ -46,9 +46,12 @@
 /* ---------- Product Details Form Edit START ---------- */
 
 .I_inset_form_title {
-  color: #1769aa;
-  text-align: center;
-  padding-bottom: 10px;
+  color: #1769aa !important;
+  text-align: center !important;
+  padding-bottom: 28px !important;
+  padding-top: 10px !important;
+  font-size: 25px;
+  font-weight: 800 !important;
 }
 
 .I_inset_form {
