@@ -76,7 +76,7 @@ const InsertForm = () => {
         setProductExpiration("");
         setProductQuantity("");
     };
-
+    
 
     // ---------- Configurations END ----------
 
@@ -89,7 +89,7 @@ const InsertForm = () => {
 
 
         <Form className="I_in_inset_form">
-            <h1 className="I_inset_form_title">Product Form</h1>
+             
             <Form.Field>
                 <label className="I_in_inset_form_label"></label>
                 <input
