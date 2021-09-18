@@ -14,7 +14,7 @@ export default function InformationContainer() {
 
         <Grid container spacing={3}>
 
-          <Grid item xs={12} sm={6} md={12} className="I_information_container_grid">
+          <Grid item xs={12} sm={12} md={12} className="I_information_container_grid">
             <InformationModal />
           </Grid>
     
