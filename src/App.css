@@ -185,7 +185,6 @@
   background: #64b5f6 !important;
 }
 
-
 /* ---------- Information Container Edit END -----------*/
 
 /* ---------- Information Modal Edit START -----------*/
@@ -202,6 +201,31 @@
 .I_information_modal_btn:hover{
   background: #64b5f6 !important;
   transition: all 0.5s ease !important;
+}
+
+.I_information_modal_title{
+
+  color: #1769aa !important;
+  text-align: center;
+  padding-bottom: 20px !important;
+  font-size: 32px !important;
+  border-bottom: 3px solid #1769aa !important;
+}
+
+.I_information_modal_content{
+  background: red !important;
+}
+
+.I_information_modal_grid_out{
+  background: pink !important;
+}
+
+.I_information_modal_grid_left{
+  background: lightgreen;
+}
+
+.I_information_modal_grid_right{
+  background: rgb(0, 63, 0);
 }
 
 
