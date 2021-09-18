@@ -1,5 +1,4 @@
 import { Icon } from '@iconify/react';
-// import vaccineIcon from '@iconify/icons-tabler/vaccine';
 import syringeVaccine from '@iconify/icons-healthicons/syringe-vaccine';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';

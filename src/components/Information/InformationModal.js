@@ -61,7 +61,7 @@ const InformationModal = () => {
                                     <br />
                                     Only official medical staff members assigned by the Hospital can directly use the inventory dashboard.
                                     <br />
-                                    Access restrictions have been place to maintain the integrity of the inventory as it is a critical to a Hospital.                               
+                                    Access restrictions have been placed to maintain the integrity of the inventory as it is critical to a Hospital.                               
                                 </p>
                             </Modal.Description>
                         </Grid>
@@ -88,7 +88,7 @@ const InformationModal = () => {
                                     Decisions such as what additional products to be ordered next, 
                                     low quantity products and soon to expire products can be made by viewing this dashboard.
                                     <br />
-                                    Higher Level Management desicions can be made.
+                                    This will lead to efficient stock management.
                                 </p>
                             </Modal.Description>
                         </Grid>

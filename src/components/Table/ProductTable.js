@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "semantic-ui-css/semantic.min.css";
 import {
-    Container,
-    Grid,
     Modal,
-    Image,
     Segment,
     Button,
     Form,
-    Header,
-    Table,
-    Icon,
-    Menu,
+    Table
 } from "semantic-ui-react";
 import { TablePagination, TableRow, TableCell } from '@material-ui/core';
 import firebase from "../../Firebase";
-// import { Icon } from '@iconify/react';
-// import editSolid from '@iconify/icons-clarity/edit-solid';
-// import deleteFilled from '@iconify/icons-ant-design/delete-filled';
+
 import '../../App.css'
 
 

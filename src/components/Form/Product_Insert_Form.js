@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "semantic-ui-css/semantic.min.css";
 import {
-    Segment,
     Button,
-    Form,
-    Icon
+    Form
 } from "semantic-ui-react";
 import firebase from "../../Firebase";
 import "../../App.css";
-import { shoppingFilled } from '@iconify/icons-ant-design/shopping-filled';
-import { InputGroup, InputGroupText, InputGroupAddon, Input } from 'reactstrap';
 
 
 
@@ -309,10 +305,6 @@ const InsertForm = () => {
                 Add
             </Button>
         </Form>
-
-
-
-
 
 
     )

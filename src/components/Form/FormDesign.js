@@ -1,4 +1,4 @@
-import { Box, Grid, Container, Typography } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
 import InsertForm from './Product_Insert_Form';
 import ProductTable from '../Table/ProductTable';
 

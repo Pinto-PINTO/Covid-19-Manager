@@ -1,5 +1,4 @@
 import { Icon } from '@iconify/react';
-// import androidFilled from '@iconify/icons-ant-design/android-filled';
 import shoppingFilled from '@iconify/icons-ant-design/shopping-filled';
 import { alpha, styled } from '@material-ui/core/styles';
 import { Card, Typography } from '@material-ui/core';

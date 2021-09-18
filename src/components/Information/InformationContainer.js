@@ -1,4 +1,4 @@
-import { Box, Grid, Container, Typography } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
 
 import InformationModal from './InformationModal'
 
