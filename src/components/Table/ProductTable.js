@@ -13,8 +13,6 @@ import firebase from "../../Firebase";
 import '../../App.css'
 
 
-
-
 const ProductTable = () => {
 
 
@@ -257,7 +255,7 @@ const ProductTable = () => {
         <div>
 
             {/* --- Product Table START---- */}
-
+            
             <Segment className="I_product_table_segment">
 
                 {/* Creating table with content from db */}
@@ -447,7 +445,8 @@ const ProductTable = () => {
 
 
             {/* --- Product Table END---- */}
-           
+        
+            {/* <p>{productData.length}</p> */}
         </div>
 
     )
