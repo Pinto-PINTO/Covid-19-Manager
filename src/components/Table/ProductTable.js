@@ -63,7 +63,7 @@ const ProductTable = () => {
 
             Product_Name: uProductName,
             Product_Desc: uProductDescription,
-            Product_Status: uProductStatus,
+            Product_Status: uProductStatus.toUpperCase(),
             Product_Expire: uProductExpiration,
             Product_Qty: uProductQuantity,
         });
@@ -123,6 +123,132 @@ const ProductTable = () => {
     // ---------- Table Pagination END ----------
 
 
+    // ------------ Form Validation START ------------
+
+    const [productNameError, setProductNameError] = useState({});
+    const [productDescriptionError, setProductDescriptionError] = useState({});
+    const [productStatusError, setProductStatusError] = useState({});
+    const [productExpirationError, setProductExpirationError] = useState({});
+    const [productQuantityError, setProductQuantityError] = useState({});
+
+
+    const handleFormInput = () => {
+
+        // Return boolean to check if there is any errors within the form
+        const isValid = handleFormValidations();
+
+        if (isValid) {
+            handleUpdateProduct();
+            setOpen(false);
+        }
+    }
+
+    const handleFormValidations = () => {
+
+        // Initializing empty objects
+        const productNameError = {};
+        const productDescriptionError = {};
+        const productStatusError = {};
+        const productExpirationError = {};
+        const productQuantityError = {};
+
+        let isValid = true;  // by default 
+
+        // Validations
+
+        // 1) Product Name Validations 
+        if (uProductName.trim().length == 0) {
+            productNameError.productNameNone = "The product name field cannot be empty";
+            isValid = false;
+        }
+
+        if (uProductName.trim().length < 3 && uProductName.trim().length > 0) {
+            productNameError.productNameShort = "The product name is too short";
+            isValid = false;
+        }
+
+        if (uProductName.trim().length > 15) {
+            productNameError.productNameLong = "The product name is too long";
+            isValid = false;
+        }
+
+        // 2) Product Decription Validations 
+        if (uProductDescription.trim().length == 0) {
+            productDescriptionError.productDescNone = "The product description field cannot be empty";
+            isValid = false;
+        }
+
+        if (uProductDescription.trim().length > 30) {
+            productDescriptionError.productDescLong = "The product description is too long";
+            isValid = false;
+        }
+
+
+        // 3) Product Status Validations 
+        if (uProductStatus.trim().length == 0) {
+            productStatusError.productStatusNone = "The product status field cannot be empty";
+            isValid = false;
+        }
+
+        if (!uProductStatus.trim().length == 0) {
+            let status_words = ['ORDERED', 'INSTOCK', 'UNAVAILABLE']
+
+            if (!status_words.some(word => uProductStatus.toUpperCase().startsWith(word))) {
+                productStatusError.productStatusNames = "Hint: Product Status should be either Ordered, InStock or UnAvailable";
+                isValid = false;
+            }
+        }
+
+
+
+        // 4) Product Expiration Date Validations
+        if (uProductExpiration.trim().length == 0) {
+            productExpirationError.productExpirationNone = "An Expiration Date must be specified";
+            isValid = false;
+        }
+
+        // 5) Product Quantity Validations
+        if (uProductQuantity.trim().length == 0) {
+            productQuantityError.productQuantityNone = "The product quantity field cannot be empty";
+            isValid = false;
+        }
+
+        if (!uProductQuantity.trim().length == 0) {
+
+            // Syntax -> Number.isInteger(value)
+            if (!Number.isInteger(Number(uProductQuantity.trim()))) {
+                productQuantityError.productQuantityNone = "The product quantity should be an integer value";
+                isValid = false;
+            }
+
+            if (Number(uProductQuantity.trim()) == 0 || Number(uProductQuantity.trim()) < 0) {
+                productQuantityError.productQuantityZeroOrNegative = "Hint: Quanity should be greater than zero";
+                isValid = false;
+            }
+
+            if (Number(uProductQuantity.trim()) > 1000) {
+                productQuantityError.productQuantityZeroOrNegative = "The quantity is too large";
+                isValid = false;
+            }
+
+        }
+
+
+        setProductNameError(productNameError);
+        setProductDescriptionError(productDescriptionError);
+        setProductStatusError(productStatusError);
+        setProductExpirationError(productExpirationError);
+        setProductQuantityError(productQuantityError);
+        return isValid;
+
+    }
+
+
+    // ------------ Form Validation END ------------
+
+
+
+
     // ---------- Configurations END ----------
 
 
@@ -152,137 +278,151 @@ const ProductTable = () => {
                             return (
                                 <Table.Body>
                                     <Table.Row className="I_product_table_body_row">
-                                    <Table.Cell>{data.Product_Name}</Table.Cell>
-                                    <Table.Cell>{data.Product_Desc}</Table.Cell>
-                                    <Table.Cell>{data.Product_Status}</Table.Cell>
-                                    <Table.Cell>{data.Product_Expire}</Table.Cell>
-                                    <Table.Cell>{data.Product_Qty}</Table.Cell>
-                                    <Table.Cell>
+                                        <Table.Cell>{data.Product_Name}</Table.Cell>
+                                        <Table.Cell>{data.Product_Desc}</Table.Cell>
+                                        <Table.Cell>{data.Product_Status}</Table.Cell>
+                                        <Table.Cell>{data.Product_Expire}</Table.Cell>
+                                        <Table.Cell>{data.Product_Qty}</Table.Cell>
+                                        <Table.Cell>
 
-                                        {/* ---------- Modal Update Form START ---------- */}
+                                            {/* ---------- Modal Update Form START ---------- */}
 
-                                        <Modal
-                                            onClose={() => setOpen(false)}
-                                            onOpen={() => setOpen(true)}
-                                            open={open}
-                                            trigger={
-                                                <Button color="blue" onClick={() => {
-                                                    handleUpdateClick(data);
+                                            <Modal
+                                                onClose={() => setOpen(false)}
+                                                onOpen={() => setOpen(true)}
+                                                open={open}
+                                                trigger={
+                                                    <Button color="blue" onClick={() => {
+                                                        handleUpdateClick(data);
+                                                    }}
+                                                    >
+                                                        U
+                                                    </Button>}
+                                            >
+
+                                                <Modal.Content image className="I_update_modal_content">
+                                                    <Modal.Description>
+
+                                                        {/* ---------- Update Form START --------- */}
+
+                                                        <Form className="I_in_inset_form">
+                                                            <h1 className="I_update_form_title">Update Product Form</h1>
+                                                            <Form.Field>
+                                                                <label className="I_in_update_form_label">Edit Product Name</label>
+                                                                <input
+                                                                    placeholder="Enter Product Name"
+                                                                    focus
+                                                                    value={uProductName}
+                                                                    onChange={(e) => {
+                                                                        setuProductName(e.target.value);
+                                                                    }}
+                                                                    type="text"
+                                                                    className="I_in_inset_form_label"
+                                                                />
+                                                                {Object.keys(productNameError).map((key) => {
+                                                                    return <div style={{ color: "red", paddingTop: "10px" }}>{productNameError[key]}</div>
+                                                                })}
+                                                            </Form.Field>
+                                                            <Form.Field>
+                                                                <label className="I_in_update_form_label">Edit Product Description</label>
+                                                                <input
+                                                                    placeholder="Enter Description"
+                                                                    focus
+                                                                    value={uProductDescription}
+                                                                    onChange={(e) => {
+                                                                        setuProductDescription(e.target.value);
+                                                                    }}
+                                                                    type="text"
+                                                                    className="I_in_inset_form_label"
+                                                                />
+                                                                {Object.keys(productDescriptionError).map((key) => {
+                                                                    return <div style={{ color: "red", paddingTop: "10px" }}>{productDescriptionError[key]}</div>
+                                                                })}
+                                                            </Form.Field>
+                                                            <Form.Field>
+                                                                <label className="I_in_update_form_label" >Edit Product Status</label>
+                                                                <input
+                                                                    placeholder="Enter Status"
+                                                                    focus
+                                                                    value={uProductStatus}
+                                                                    onChange={(e) => {
+                                                                        setuProductStatus(e.target.value);
+                                                                    }}
+                                                                    type="text"
+                                                                    className="I_in_inset_form_label"
+                                                                />
+                                                                {Object.keys(productStatusError).map((key) => {
+                                                                    return <div style={{ color: "red", paddingTop: "10px" }}>{productStatusError[key]}</div>
+                                                                })}
+                                                            </Form.Field>
+                                                            <Form.Field>
+                                                                <label className="I_in_update_form_label" >Edit Expiration Date</label>
+                                                                <input
+                                                                    placeholder="Enter the Expiration Date"
+                                                                    focus
+                                                                    value={uProductExpiration}
+                                                                    onChange={(e) => {
+                                                                        setuProductExpiration(e.target.value);
+                                                                    }}
+                                                                    type="date"
+                                                                    className="I_in_inset_form_label"
+                                                                />
+                                                                {Object.keys(productExpirationError).map((key) => {
+                                                                    return <div style={{ color: "red", paddingTop: "10px" }}>{productExpirationError[key]}</div>
+                                                                })}
+                                                            </Form.Field>
+                                                            <Form.Field>
+                                                                <label className="I_in_update_form_label" >Edit Product Quantity</label>
+                                                                <input
+                                                                    placeholder="Enter the Quantity"
+                                                                    focus
+                                                                    value={uProductQuantity}
+                                                                    onChange={(e) => {
+                                                                        setuProductQuantity(e.target.value);
+                                                                    }}
+                                                                    type="number"
+                                                                    className="I_in_inset_form_label"
+                                                                />
+                                                                {Object.keys(productQuantityError).map((key) => {
+                                                                    return <div style={{ color: "red", paddingTop: "10px" }}>{productQuantityError[key]}</div>
+                                                                })}
+                                                            </Form.Field>
+
+
+                                                            <Button
+                                                                type="submit"
+                                                                onClick={() => {
+                                                                    handleFormInput();
+                                                                }}
+                                                                primary
+                                                                className="ui button I_in_inset_form_add_btn"
+                                                            >
+                                                                {""}
+                                                                {/* <Icon name="cog"></Icon> */}
+                                                                Update
+                                                            </Button>
+                                                        </Form>
+
+                                                        {/* ---------- Update Form END ----------- */}
+
+
+
+                                                    </Modal.Description>
+                                                </Modal.Content>
+                                            </Modal>
+
+                                            {/* ---------- Modal Update Form END ---------- */}
+
+                                            <Button
+                                                color="red"
+                                                onClick={() => {
+                                                    handleDeleteClick(data.id);
                                                 }}
-                                                >
-                                                    U
-                                                </Button>}
-                                        >
-
-                                            <Modal.Content image className="I_update_modal_content">
-                                                <Modal.Description>
-
-                                                    {/* ---------- Update Form START --------- */}
-
-                                                    <Form className="I_in_inset_form">
-                                                        <h1 className="I_update_form_title">Update Product Form</h1>
-                                                        <Form.Field>
-                                                            <label className="I_in_update_form_label">Edit Product Name</label>
-                                                            <input
-                                                                placeholder="Enter Product Name"
-                                                                focus
-                                                                value={uProductName}
-                                                                onChange={(e) => {
-                                                                    setuProductName(e.target.value);
-                                                                }}
-                                                                type="text"
-                                                                className="I_in_inset_form_label"
-                                                            />
-                                                        </Form.Field>
-                                                        <Form.Field>
-                                                            <label className="I_in_update_form_label">Edit Product Description</label>
-                                                            <input
-                                                                placeholder="Enter Description"
-                                                                focus
-                                                                value={uProductDescription}
-                                                                onChange={(e) => {
-                                                                    setuProductDescription(e.target.value);
-                                                                }}
-                                                                type="text"
-                                                                className="I_in_inset_form_label"
-                                                            />
-                                                        </Form.Field>
-                                                        <Form.Field>
-                                                            <label className="I_in_update_form_label" >Edit Product Status</label>
-                                                            <input
-                                                                placeholder="Enter Status"
-                                                                focus
-                                                                value={uProductStatus}
-                                                                onChange={(e) => {
-                                                                    setuProductStatus(e.target.value);
-                                                                }}
-                                                                type="text"
-                                                                className="I_in_inset_form_label"
-                                                            />
-                                                        </Form.Field>
-                                                        <Form.Field>
-                                                            <label className="I_in_update_form_label" >Edit Expiration Date</label>
-                                                            <input
-                                                                placeholder="Enter the Expiration Date"
-                                                                focus
-                                                                value={uProductExpiration}
-                                                                onChange={(e) => {
-                                                                    setuProductExpiration(e.target.value);
-                                                                }}
-                                                                type="date"
-                                                                className="I_in_inset_form_label"
-                                                            />
-                                                        </Form.Field>
-                                                        <Form.Field>
-                                                            <label className="I_in_update_form_label" >Edit Product Quantity</label>
-                                                            <input
-                                                                placeholder="Enter the Quantity"
-                                                                focus
-                                                                value={uProductQuantity}
-                                                                onChange={(e) => {
-                                                                    setuProductQuantity(e.target.value);
-                                                                }}
-                                                                type="number"
-                                                                className="I_in_inset_form_label"
-                                                            />
-                                                        </Form.Field>
-
-
-                                                        <Button
-                                                            type="submit"
-                                                            onClick={() => {
-                                                                handleUpdateProduct();
-                                                                setOpen(false);
-                                                            }}
-                                                            primary
-                                                            className="ui button I_in_inset_form_add_btn"
-                                                        >
-                                                            {""}
-                                                            {/* <Icon name="cog"></Icon> */}
-                                                            Update
-                                                        </Button>
-                                                    </Form>
-
-                                                    {/* ---------- Update Form END ----------- */}
-
-
-
-                                                </Modal.Description>
-                                            </Modal.Content>
-                                        </Modal>
-
-                                        {/* ---------- Modal Update Form END ---------- */}
-
-                                        <Button
-                                            color="red"
-                                            onClick={() => {
-                                                handleDeleteClick(data.id);
-                                            }}
-                                        >
-                                            {/* <Icon name="delete"></Icon> */}
-                                            D
-                                        </Button>
-                                    </Table.Cell>
+                                            >
+                                                {/* <Icon name="delete"></Icon> */}
+                                                D
+                                            </Button>
+                                        </Table.Cell>
                                     </Table.Row>
                                 </Table.Body>
                             );
