@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+import firebase from "../../Firebase";
 import { Icon } from '@iconify/react';
 import lowLevel from '@iconify/icons-healthicons/low-level';
 import { alpha, styled } from '@material-ui/core/styles';
@@ -34,15 +36,45 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-// const TOTAL = 714000;
 
 export default function LowStock() {
+
+  // Obtaining Firebase Data START -------------------------------------------
+
+  const [productData, setProductData] = useState([]);
+
+  useEffect(() => {
+    const firestore = firebase.database().ref("/ProductInfo");
+    firestore.on("value", (response) => {
+      const data = response.val();
+      let productInfo = [];
+      for (let id in data) {
+        productInfo.push({
+          id: id,
+          Product_Name: data[id].Product_Name,
+          Product_Desc: data[id].Product_Desc,
+          Product_Status: data[id].Product_Status,
+          Product_Expire: data[id].Product_Expire,
+          Product_Qty: data[id].Product_Qty
+        });
+      }
+      setProductData(productInfo);
+    });
+  }, []);
+
+
+  // Obtaining Firebase Data  END ----------------------------------------------
+
+  // If Product Quantity < 10  its Low Quantity
+  const low = productData.filter(entry => Number(entry.Product_Qty) < 10)  //  function to calculate low Quantity product count
+
+
   return (
     <RootStyle className="borderRadius">
       <IconWrapperStyle>
         <Icon icon={lowLevel} width={30} height={30} />
       </IconWrapperStyle>
-      <Typography className="number" variant="h3">25</Typography>
+      <Typography className="number" variant="h3">{low.length}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Low Stock
       </Typography>
